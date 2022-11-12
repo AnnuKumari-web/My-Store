@@ -1,0 +1,74 @@
+<h2>Cart</h2>
+
+<div *ngIf="items.length">
+  <h6>Add Details for Delivery</h6>
+  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+    <div class="input-group mb-3">
+      <span class="input-group-text">First and last name</span>
+      <input
+        formControlName="name"
+        type="text"
+        aria-label="First name"
+        class="form-control"
+      />
+      <input
+        formControlName="name"
+        type="text"
+        aria-label="Last name"
+        class="form-control"
+      />
+    </div>
+
+    <div class="input-group">
+      <span class="input-group-text">Address</span>
+      <input
+        type="text"
+        aria-label="Address"
+        class="form-control"
+        formControlName="address"
+      />
+    </div>
+  </form>
+
+  <div class="container cart-item h5" *ngIf="items.length">
+    <div class="row">
+      <div class="col-8">
+        Item Name
+      </div>
+      <div class="col-4">
+        Price
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container cart-item" *ngFor="let item of items">
+    <div class="row">
+      <div class="col-8">
+        {{ item.name }}
+      </div>
+      <div class="col-4">
+        {{ item.price | currency: "INR":"symbol":"1.2-2" }}
+      </div>
+    </div>
+  </div>
+  <div class="container cart-item">
+    <div class="row">
+      <div class="col-8">
+        Total 
+      </div>
+      <div class="col-4">
+        {{total | currency: "INR":"symbol":"1.2-2"}}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<button class="btn btn-primary" type="submit" *ngIf="items.length">
+  Buy Now
+</button>
+
+<div *ngIf="items.length == 0">
+  <a routerLink="/productList"><h5>Add Items to the Cart</h5></a>
+</div>

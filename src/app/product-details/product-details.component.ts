@@ -1,0 +1,180 @@
+import { Component, OnInit} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Product } from '../products';
+
+import { ProductService } from '../services/product.service';
+import { CartService } from '../services/cart.service';
+
+@Component({
+  selector: 'app-product-details',
+  templateUrl: './product-details.component.html',
+  styleUrls: ['./product-details.component.css'],
+})
+export class ProductDetailsComponent implements OnInit {
+  products: any = [
+    {
+      id: 1,
+      name: 'Cable Lock',
+      price: 799,
+      description:
+        'Cable Lock is a type of a security cable with a lock which is used to attach Portable IT Equipment to a fixture, using the security lock. The projector has a security lock for use with a PC Guardian Cable Lock System.',
+      img: '../assets/cable lock.jpg',
+      brand: 'Kensington',
+      modelNo: 7835,
+    },
+    {
+      id: 2,
+      name: 'Chair',
+      price: 6999,
+      description:
+        'An office chair, or desk chair, that is designed for use at a desk in an office/work station.',
+      img: '../assets/chair.jpg',
+      brand: 'Godrej',
+      modelNo: 3042,
+    },
+    {
+      id: 3,
+      name: 'Desk',
+      price: 5549,
+      description:
+        'The computer desk or related ergonomic desk/furniture pieces designed to comfortably provide a working surface or conceal office equipment including computers, peripherals and cabling for office and home-office users.',
+      img: '../assets/desk.jpeg',
+      brand: 'Godrej',
+      modelNo: 9956,
+    },
+    {
+      id: 4,
+      name: 'Extender',
+      price: 999,
+      description:
+        'A device that takes an existing signal from a wireless router or wireless access point and rebroadcasts it to create a second network.',
+      img: '../assets/extender.jpeg',
+      brand: 'TP-Link',
+      modelNo: 8674,
+    },
+    {
+      id: 5,
+      name: 'Footrest',
+      price: 449,
+      description:
+        'A support for the feet or a foot, used when sitting in a office chair/work station.',
+      img: '../assets/footrest.jpg',
+      brand: 'ErgoFoam',
+      modelNo: 9234,
+    },
+    {
+      id: 6,
+      name: 'Headset',
+      price: 12999,
+      description:
+        'Headsets/headphones/earphones/air pods can be considered to connect over a laptop or to a computer, allowing the user to speak and listen while keeping both hands free.',
+      img: '../assets/headset.jpg',
+      brand: 'Sony',
+      modelNo: 7564,
+    },
+    {
+      id: 7,
+      name: 'Keyboard',
+      price: 2599,
+      description:
+        'Bluetooth/wired/wireless keyboards for all Mac,Chrome or Windows are allowed in this section',
+      img: '../assets/keyboard.jpg',
+      brand: 'Logitech',
+      modelNo: 9273,
+    },
+    {
+      id: 8,
+      name: 'Lumber Support',
+      price: 1999,
+      description:
+        'Anything that gives you additional support to the lumbar region while sitting in for longer durations can be brought.',
+      img: '../assets/Lumber Support.jpg',
+      brand: 'Samsonite',
+      modelNo: 7209,
+    },
+    {
+      id: 9,
+      name: 'Monitor & its cables',
+      price: 12799,
+      description:
+        'Computer screens or LED displays along with the cables will be allowed',
+      img: '../assets/monitor.jpg',
+      brand: 'Samsung',
+      modelNo: 810,
+    },
+    {
+      id: 10,
+      name: 'Mouse',
+      price: 899,
+      description: 'Bluetooth/wired/wireless all types of mouse can be purchased',
+      img: '../assets/mouse.jpg',
+      brand: 'Dell',
+      modelNo: 8120,
+    },
+    {
+      id: 11,
+      name: 'Router',
+      price: 1199,
+      description:
+        'A device that allows to make communication in between the internet and all devices which are linked to the internet in your house and office.',
+      img: '../assets/router.jpg',
+      brand: 'Mi',
+      modelNo: 7919,
+    },
+    {
+      id: 12,
+      name: 'Table Lamp',
+      price: 349,
+      description: 'Table lamp or study lamp. ',
+      img: '../assets/table lamp.jpg',
+      brand: 'Phillips',
+      modelNo: 7909,
+    },
+    {
+      id: 13,
+      name: 'UPS',
+      price: 5349,
+      description:
+        'UPS/Invertors/Power-BackUps are allowed under this to be purchased. ',
+      img: '../assets/ups.jpeg',
+      brand: 'APC',
+      modelNo: 6390,
+    },
+    {
+      id: 14,
+      name: 'Web Camera',
+      price: 3449,
+      description:
+        'A webcam/small digital video camera that connects to a computer/laptop is allowed',
+      img: '../assets/web camera.jpeg',
+      brand: 'Logitech',
+      modelNo: 137,
+    },
+  ];
+  product: Product | undefined;
+
+  constructor(
+    private route: ActivatedRoute,
+    private cartService: CartService,
+  ) {}
+
+  ngOnInit(): void {
+
+    // First get the product id from the current route.
+    const routeParams = this.route.snapshot.paramMap;
+    const productIdFromRoute = Number(routeParams.get('productId'));
+
+    // Find the product that correspond with the id provided in route.
+    this.product = this.products.find(
+      (product: { id: number; }) => product.id === productIdFromRoute
+    );
+  }
+
+
+
+  addToCart(product: any) {
+    this.cartService.addToCart(product);
+    
+    window.alert(`Your product has been added to the cart!` );
+  }
+}

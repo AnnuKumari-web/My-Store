@@ -1,0 +1,25 @@
+<div>
+  <app-top-bar></app-top-bar>
+</div>
+
+<h2>Shop Computers & Accessories</h2>
+
+<div class="container" style="width: 100rem">
+  <div style="display: inline-block" *ngFor="let product of products">
+    <div class="card" style="width: 18rem">
+      <img [src]="product.img" [routerLink]="['/products', product.id]" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <p class="card-text">
+          <a
+            [title]="product.name + 'details'"
+            [routerLink]="['/products', product.id]"
+
+            onclick="addItem(product.id)"
+          >
+            {{ product.name }}
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

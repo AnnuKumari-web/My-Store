@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-7">
+        <img src="../../../assets/HomePage/welcome.jpg" height="100%" width="100%" alt="" />
+      </div>
+      <div class="col-md-4 mt-3 p-5">
+        <h3 class="text-success text-center">Welcome</h3>
+          <form action="" class="mt-4">
+              <h5 class="text-primary mb-3">Sign up</h5>
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInput" placeholder="Username" name="name" [(ngModel)]="name">
+                <label class="p-4" for="floatingInput">Full Name</label>
+              </div>
+              <div class="form-floating mb-3">
+                  <input type="email" class="form-control" id="floatingAddress" placeholder="Username" name="username" [(ngModel)]="username">
+                  <label class="p-4" for="floatingInput">Email address</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" [(ngModel)]="password">
+                  <label class="p-4" for="floatingPassword">Password</label>
+                </div> 
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button class="btn btn-outline-primary me-md-2" type="button" (click)="signup()">Register</button>
+                </div>
+  
+                <a routerLink="/" class="text-primary" style="text-decoration: none">Log In ? </a>
+          </form>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+  </div>
